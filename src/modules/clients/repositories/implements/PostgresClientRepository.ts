@@ -30,8 +30,10 @@ export class PostgresClientRepository implements IClientRepository {
     return newClient;
   }
 
-  findByName(name: string): Promise<Client> {
-    throw new Error("Method not implemented.");
+  async findByName(name: string): Promise<Client> {
+    const client = await this.repository.findOne({ full_name: name });
+
+    return client;
   }
 
   findbyId(id: string): Promise<Client> {
