@@ -12,12 +12,12 @@ export class FindCityByStateUseCase {
   ) {}
 
   async execute(state: string): Promise<City[]> {
-    const city = await this.postgresCityRepository.findByState(state);
+    const cities = await this.postgresCityRepository.findByState(state);
 
-    if (!city) {
+    if (cities.length === 0) {
       throw new AppError("City doesn't exist!", 422);
     }
 
-    return city;
+    return cities;
   }
 }
