@@ -28,7 +28,8 @@ export class Client {
 
   @ManyToOne(() => City)
   @JoinColumn({ name: "id" })
-  city_id: City;
+  @Column()
+  city_id: string;
 
   @CreateDateColumn()
   created_at: Date;
