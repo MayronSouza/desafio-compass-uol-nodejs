@@ -23,7 +23,9 @@ export class PostgresCityRepository implements ICityRepository {
     return city;
   }
 
-  findByState(state: string): Promise<City> {
-    throw new Error("Method not implemented.");
+  async findByState(state: string): Promise<City[]> {
+    const city = await this.repository.find({ state });
+
+    return city;
   }
 }

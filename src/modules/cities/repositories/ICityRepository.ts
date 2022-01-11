@@ -8,5 +8,5 @@ export interface ICreateCityDTO {
 export interface ICityRepository {
   create({ name, state }: ICreateCityDTO): Promise<City>;
   findByName(name: string): Promise<City>;
-  findByState(state: string): Promise<City>;
+  findByState(state: string): Promise<City[]>;
 }
