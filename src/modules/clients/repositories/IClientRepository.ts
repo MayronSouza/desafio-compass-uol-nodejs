@@ -3,7 +3,7 @@ import { Client } from "../entities/Clients";
 export interface IClientDTO {
   full_name: string;
   gender: string;
-  birth_date: Date;
+  birth_date: any;
   age: number;
   city_id: string;
 }

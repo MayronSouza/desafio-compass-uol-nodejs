@@ -7,7 +7,7 @@ import { IClientRepository } from "../../repositories/IClientRepository";
 interface IRequest {
   full_name: string;
   gender: string;
-  birth_date: Date;
+  birth_date: any;
   age: number;
   city_id: string;
 }
@@ -19,16 +19,34 @@ export class CreateClientUseCase {
     private postgresClientRepository: IClientRepository
   ) {}
 
-  async execute(data: IRequest): Promise<any> {
+  async execute({
+    full_name,
+    gender,
+    birth_date,
+    age,
+    city_id,
+  }: IRequest): Promise<any> {
     const clientExists = await this.postgresClientRepository.findByName(
-      data.full_name
+      full_name
     );
 
     if (clientExists) {
       throw new AppError("Client already exists!");
     }
 
-    const client = await this.postgresClientRepository.create(data);
+    const newDate = new Date(birth_date);
+
+    birth_date = newDate;
+
+    console.log("Id da Cidade :::", city_id);
+
+    const client = await this.postgresClientRepository.create({
+      full_name,
+      gender,
+      birth_date,
+      age,
+      city_id,
+    });
 
     return client;
   }
