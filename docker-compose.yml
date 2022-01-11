@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  desafio_compass:
+    image: postgres
+    container_name: desafio_compass
+    restart: always
+    ports:
+      - 5438:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=compass
+      - POSTGRES_DB=desafio_compass
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: rentx
+    ports:
+      - 3004:3004
+    volumes:
+      - .:/usr/app
+    links:
+      - desafio_compass
+    depends_on:
+      - desafio_compass
+
+volumes:
+  pgdata:
+    driver: local
