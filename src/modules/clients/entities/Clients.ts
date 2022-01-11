@@ -12,7 +12,7 @@ import { City } from "../../cities/entities/City";
 @Entity("clients")
 export class Client {
   @PrimaryColumn()
-  id: string;
+  id?: string;
 
   @Column()
   full_name: string;
