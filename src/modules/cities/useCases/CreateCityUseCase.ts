@@ -1,5 +1,7 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../errors/AppError";
 
+import { City } from "../entities/City";
 import { ICityRepository } from "../repositories/ICityRepository";
 
 interface IRequest {
@@ -14,16 +16,18 @@ export class CreateCityUseCase {
     private postgresCityRepository: ICityRepository
   ) {}
 
-  async execute({ name, state }: IRequest): Promise<void> {
+  async execute({ name, state }: IRequest): Promise<City> {
     const cityExists = await this.postgresCityRepository.findByName(name);
 
     if (cityExists) {
-      throw new Error("City already exists!");
+      throw new AppError("City already exists!");
     }
 
-    await this.postgresCityRepository.create({
+    const city = await this.postgresCityRepository.create({
       name,
       state,
     });
+
+    return city;
   }
 }

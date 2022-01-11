@@ -8,8 +8,8 @@ export class CreateCityController {
 
     const createCityUseCase = container.resolve(CreateCityUseCase);
 
-    await createCityUseCase.execute({ name, state });
+    const result = await createCityUseCase.execute({ name, state });
 
-    return response.status(201).json();
+    return response.status(201).json(result);
   }
 }

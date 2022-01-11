@@ -9,10 +9,12 @@ export class PostgresCityRepository implements ICityRepository {
   constructor() {
     this.repository = getRepository(City);
   }
-  async create({ name, state }: ICreateCityDTO): Promise<void> {
+  async create({ name, state }: ICreateCityDTO): Promise<City> {
     const city = this.repository.create({ name, state });
 
-    await this.repository.save(city);
+    const newCity = await this.repository.save(city);
+
+    return newCity;
   }
 
   async findByName(name: string): Promise<City> {
