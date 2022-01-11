@@ -15,8 +15,10 @@ export class PostgresCityRepository implements ICityRepository {
     await this.repository.save(city);
   }
 
-  findByName(name: string): Promise<City> {
-    throw new Error("Method not implemented.");
+  async findByName(name: string): Promise<City> {
+    const city = await this.repository.findOne({ name });
+
+    return city;
   }
 
   findByState(state: string): Promise<City> {
