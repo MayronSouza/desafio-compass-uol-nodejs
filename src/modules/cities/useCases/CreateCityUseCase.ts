@@ -8,7 +8,7 @@ interface IRequest {
 }
 
 @injectable()
-export class CreateCityuseCase {
+export class CreateCityUseCase {
   constructor(
     @inject("PostgresCityRepository")
     private postgresCityRepository: ICityRepository
