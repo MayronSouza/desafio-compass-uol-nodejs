@@ -1,29 +1,29 @@
 version: "3.7"
 
 services:
-  desafio_compass:
+  desafio_compass_oul:
     image: postgres
-    container_name: desafio_compass
+    container_name: desafio_compass_oul
     restart: always
     ports:
       - 5438:5432
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=compass
-      - POSTGRES_DB=desafio_compass
+      - POSTGRES_DB=desafio_compass_oul
     volumes:
       - pgdata:/data/postgres
   app:
     build: .
-    container_name: rentx
+    container_name: desafio_compass_oul_api
     ports:
       - 3004:3004
     volumes:
       - .:/usr/app
     links:
-      - desafio_compass
+      - desafio_compass_oul
     depends_on:
-      - desafio_compass
+      - desafio_compass_oul
 
 volumes:
   pgdata:
