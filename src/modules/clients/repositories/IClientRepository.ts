@@ -17,7 +17,7 @@ export interface IClientRepository {
     city_id,
   }: IClientDTO): Promise<Client>;
   findByName(name: string): Promise<Client>;
-  findbyId(id: string): Promise<Client>;
+  findById(id: string): Promise<Client>;
   remove(id: string): Promise<Client>;
   updateName(id: string, name: string): Promise<Client>;
 }
