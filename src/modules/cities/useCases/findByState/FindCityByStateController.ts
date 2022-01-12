@@ -8,8 +8,6 @@ export class FindCityByStateController {
 
     const findCityByStateUseCase = container.resolve(FindCityByStateUseCase);
 
-    console.log(`Param Aqui: ${state}`);
-
     const result = await findCityByStateUseCase.execute(state);
 
     return response.json(result);
