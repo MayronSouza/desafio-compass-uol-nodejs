@@ -12,12 +12,12 @@ Conhecendo você melhor, poderemos selecionar quais desafios já podemos passar 
 
 Nesta estapa esperamos que você construa o código que contemple as seguintes operações expostas como endpoints REST para:
 
-- Cadastrar cidade
-- Cadastrar cliente
-- Consultar cidade pelo nome
-- Consultar cidade pelo estado
-- Consultar cliente pelo nome
-- Consultar cliente pelo Id
+- Cadastrar cidade [X]
+- Cadastrar cliente [X]
+- Consultar cidade pelo nome [X]
+- Consultar cidade pelo estado [X]
+- Consultar cliente pelo nome [X]
+- Consultar cliente pelo Id [X]
 - Remover cliente
 - Alterar o nome do cliente
 
