@@ -34,11 +34,7 @@ export class CreateClientUseCase {
       throw new AppError("Client already exists!");
     }
 
-    const newDate = new Date(birth_date);
-
-    birth_date = newDate;
-
-    console.log("Id da Cidade :::", city_id);
+    birth_date = new Date(birth_date);
 
     const client = await this.postgresClientRepository.create({
       full_name,
