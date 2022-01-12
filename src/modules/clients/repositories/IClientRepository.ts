@@ -1,3 +1,4 @@
+import { DeleteResult, UpdateResult } from "typeorm";
 import { Client } from "../entities/Clients";
 
 export interface IClientDTO {
@@ -15,9 +16,10 @@ export interface IClientRepository {
     birth_date,
     age,
     city_id,
-  }: IClientDTO): Promise<Client>;
+  }: IClientDTO): Promise<void>;
+  find(): Promise<Client[]>;
   findByName(name: string): Promise<Client>;
   findById(id: string): Promise<Client>;
-  remove(id: string): Promise<Client>;
-  updateName(id: string, name: string): Promise<Client>;
+  remove(id: string): Promise<DeleteResult>;
+  updateByName(client: Client): Promise<UpdateResult>;
 }

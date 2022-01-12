@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { DeleteResult, getRepository, Repository, UpdateResult } from "typeorm";
 
 import { Client } from "../../entities/Clients";
 import { IClientDTO, IClientRepository } from "../IClientRepository";
@@ -16,7 +16,7 @@ export class PostgresClientRepository implements IClientRepository {
     birth_date,
     age,
     city_id,
-  }: any): Promise<any> {
+  }: any): Promise<void> {
     const client = this.repository.create({
       full_name,
       gender,
@@ -25,9 +25,13 @@ export class PostgresClientRepository implements IClientRepository {
       city_id,
     });
 
-    const newClient = await this.repository.save(client);
+    await this.repository.save(client);
+  }
 
-    return newClient;
+  async find(): Promise<Client[]> {
+    const clients = await this.repository.find();
+
+    return clients;
   }
 
   async findByName(full_name: string): Promise<Client> {
@@ -42,11 +46,15 @@ export class PostgresClientRepository implements IClientRepository {
     return client;
   }
 
-  remove(id: string): Promise<Client> {
-    throw new Error("Method not implemented.");
+  async remove(id: string): Promise<DeleteResult> {
+    const client = await this.repository.delete({ id });
+
+    return client;
   }
 
-  updateName(id: string, name: string): Promise<Client> {
-    throw new Error("Method not implemented.");
+  async updateByName(client: Client): Promise<UpdateResult> {
+    const clientUpdated = await this.repository.update(client.id, client);
+
+    return clientUpdated;
   }
 }
