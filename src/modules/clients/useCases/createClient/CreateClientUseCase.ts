@@ -25,7 +25,7 @@ export class CreateClientUseCase {
     birth_date,
     age,
     city_id,
-  }: IRequest): Promise<any> {
+  }: IRequest): Promise<void> {
     const clientExists = await this.postgresClientRepository.findByName(
       full_name
     );
@@ -36,14 +36,12 @@ export class CreateClientUseCase {
 
     birth_date = new Date(birth_date);
 
-    const client = await this.postgresClientRepository.create({
+    await this.postgresClientRepository.create({
       full_name,
       gender,
       birth_date,
       age,
       city_id,
     });
-
-    return client;
   }
 }

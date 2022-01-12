@@ -8,8 +8,8 @@ export class CreateClientController {
 
     const createClientUseCase = container.resolve(CreateClientUseCase);
 
-    const result = await createClientUseCase.execute(data);
+    await createClientUseCase.execute(data);
 
-    return response.status(201).json(result);
+    return response.status(201).json();
   }
 }
