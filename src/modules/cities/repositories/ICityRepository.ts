@@ -1,8 +1,10 @@
 import { City } from "../entities/City";
 
 export interface ICreateCityDTO {
+  id?: string;
   name: string;
   state: string;
+  created_at?: Date;
 }
 
 export interface ICityRepository {

@@ -4,7 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 @Entity("cities")
 export class City {
   @PrimaryColumn()
-  id: string;
+  id?: string;
 
   @Column()
   name: string;
@@ -13,7 +13,7 @@ export class City {
   state: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   constructor() {
     if (!this.id) {
